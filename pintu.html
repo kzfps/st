@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Segredo de Amor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: brown;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      position: relative;
+      flex-direction: column;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      background-color: green;
+      position: absolute;
+      top: 100vh;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-color: inherit;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        top: 100vh;
+        opacity: 1;
+      }
+      100% {
+        top: -10vh;
+        opacity: 0;
+      }
+    }
+
+    .reveal-button {
+      padding: 20px;
+      font-size: 24px;
+      background-color: white;
+      color: brown;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .secret {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-size: 48px;
+      z-index: 10;
+    }
+
+    .secret img {
+      width: 180px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <button class="reveal-button" onclick="revealSecret()">clique e revele um segredo minha princesa</button>
+
+  <div class="secret" id="secret">
+    <div>EU TE AMO ATÉ O INFINITO</div>
+    <img src="https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg" alt="Gatinho fofo">
+  </div>
+
+  <script>
+    let heartsInterval;
+
+    function createHeart(color) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.backgroundColor = color;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    // Inicia corações verdes no fundo marrom
+    heartsInterval = setInterval(() => createHeart('green'), 300);
+
+    function revealSecret() {
+      document.body.style.backgroundColor = 'red';
+      document.querySelectorAll('.heart').forEach(h => h.remove());
+      clearInterval(heartsInterval);
+
+      document.querySelector('.reveal-button').style.display = 'none';
+      document.getElementById('secret').style.display = 'flex';
+
+      // Começar corações pretos
+      setInterval(() => createHeart('black'), 300);
+    }
+  </script>
+</body>
+</html>
