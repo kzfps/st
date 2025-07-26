@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Eu te amo bobona</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background-color: #000;
+      overflow: hidden;
+      position: relative;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+    }
+
+    .content h1 {
+      color: hotpink;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .content h2 {
+      color: limegreen;
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fundo com corações -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${5 + Math.random() * 5}s`;
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <!-- Texto central -->
+  <div class="content">
+    <h1>eu te amo bobona</h1>
+    <h2>MAS VSFD BOBONA &lt;3</h2>
+  </div>
+
+</body>
+</html>
