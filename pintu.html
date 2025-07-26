@@ -1,42 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Segredo de Amor</title>
+  <meta charset="UTF-8">
+  <title>Eu te amo bobona</title>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      overflow: hidden;
-      background-color: brown;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    body {
       height: 100vh;
-      font-family: Arial, sans-serif;
+      background-color: #000;
+      overflow: hidden;
       position: relative;
-      flex-direction: column;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
     }
 
     .heart {
+      position: absolute;
       width: 20px;
       height: 20px;
-      background-color: green;
-      position: absolute;
-      top: 100vh;
+      background-color: pink;
       transform: rotate(45deg);
       animation: float 10s linear infinite;
+      opacity: 0.6;
     }
 
     .heart::before,
     .heart::after {
       content: "";
+      position: absolute;
       width: 20px;
       height: 20px;
-      background-color: inherit;
+      background-color: pink;
       border-radius: 50%;
-      position: absolute;
     }
 
     .heart::before {
@@ -51,77 +50,54 @@
 
     @keyframes float {
       0% {
-        top: 100vh;
-        opacity: 1;
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0.6;
       }
       100% {
-        top: -10vh;
+        transform: translateY(-10vh) rotate(45deg);
         opacity: 0;
       }
     }
 
-    .reveal-button {
-      padding: 20px;
-      font-size: 24px;
-      background-color: white;
-      color: brown;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .secret {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
-      color: white;
-      font-size: 48px;
       z-index: 10;
     }
 
-    .secret img {
-      width: 180px;
-      margin-top: 30px;
+    .content h1 {
+      color: hotpink;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .content h2 {
+      color: limegreen;
+      font-size: 2em;
     }
   </style>
 </head>
 <body>
-  <button class="reveal-button" onclick="revealSecret()">clique e revele um segredo minha princesa</button>
 
-  <div class="secret" id="secret">
-    <div>EU TE AMO ATÉ O INFINITO</div>
-    <img src="https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg" alt="Gatinho fofo">
-  </div>
-
+  <!-- Fundo com corações -->
   <script>
-    let heartsInterval;
-
-    function createHeart(color) {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.backgroundColor = color;
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${5 + Math.random() * 5}s`;
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }
-
-    // Inicia corações verdes no fundo marrom
-    heartsInterval = setInterval(() => createHeart('green'), 300);
-
-    function revealSecret() {
-      document.body.style.backgroundColor = 'red';
-      document.querySelectorAll('.heart').forEach(h => h.remove());
-      clearInterval(heartsInterval);
-
-      document.querySelector('.reveal-button').style.display = 'none';
-      document.getElementById('secret').style.display = 'flex';
-
-      // Começar corações pretos
-      setInterval(() => createHeart('black'), 300);
     }
   </script>
+
+  <!-- Texto central -->
+  <div class="content">
+    <h1>eu te amo bobona</h1>
+    <h2>MAS VSFD BOBONA &lt;3</h2>
+  </div>
+
 </body>
 </html>
